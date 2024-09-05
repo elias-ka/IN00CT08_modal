@@ -5,6 +5,8 @@ import { Modal, StyleSheet, Text, View, Pressable } from "react-native";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
+  const closeModal = () => setModalVisible(false);
+
   return (
     <View style={styles.container}>
       <Pressable onPress={() => setModalVisible(true)}>
@@ -13,16 +15,11 @@ export default function App() {
       <Modal
         animationType="slide"
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={closeModal}
       >
         <View style={styles.modal}>
           <Text>This is modal...</Text>
-          <Pressable
-            style={{ marginTop: 32 }}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
+          <Pressable style={{ marginTop: 32 }} onPress={closeModal}>
             <Text style={{ fontWeight: "bold" }}>Close</Text>
           </Pressable>
         </View>
